@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+</head>
+<body>
+<form action="" method="post">
+    {% csrf_token %}
+    <label for="id_username">账号：</label>
+    <input type="text" id="id_username" name="username"><br>
+    <label for="id_password">密码：</label>
+    <input type="password" id="id_password" name="password"><br>
+    <input type="submit" name="" value="登录">
+</form>
+</body>
+</html>

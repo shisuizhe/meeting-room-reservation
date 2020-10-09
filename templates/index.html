@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Index</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/sweetalert/sweetalert.css">
+    <link rel="stylesheet" href="/static/datetimepicker/bootstrap-datetimepicker.min.css">
+    <style>
+        .navbar{
+            border-radius: unset;
+        }
+        .navbar-nav{
+            float: right;
+        }
+        @media (max-width: 800px){
+            .navbar-nav{
+                float: none;
+            }
+        }
+        .active-self{
+            background-color: #228B22;
+            color: white;
+        }
+        .active-others{
+            background-color: #CD3333;
+            color: white;
+        }
+        .active-checked{
+            background-color: #87CEFA;
+            color: white;
+        }
+        .input-date{
+            width: 206px;
+        }
+        .form_datetime{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand">会议室预定</span>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                {% with user=request.user.username %}
+                    {% if user %}
+                        <li><a href="/">{{ user }}</a></li>
+                        <li><a href="/logout">注销</a></li>
+                    {% else %}
+                        <li><a href="/login">登录</a></li>
+                        <li><a href="#">注册</a></li>
+                    {% endif %}
+                {% endwith %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+
+    <div class="form_datetime pull-right">
+        <div class="input-group input-date">
+            <input type="text" class="form-control" id="datetimepicker" autocomplete="off"  placeholder="请选择日期">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th id="is-login" user="{{ request.user.username }}">会议室/时间</th>
+            {% for time_choice in time_choices %}
+                <th>{{ time_choice.1 }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+            {{ table_body_html }}
+        </tbody>
+    </table>
+
+    <button class="btn btn-primary pull-right save">保存</button>
+    {% csrf_token %}
+</div>
+<script src="/static/jquery-3.3.1.min.js"></script>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/sweetalert/sweetalert.min.js"></script>
+<script src="/static/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="/static/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="/static/index.js"></script>
+</body>
+</html>
+
