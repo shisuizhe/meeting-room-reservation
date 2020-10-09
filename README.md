@@ -6,4 +6,5 @@
 
 ### how to run
 python manage.py runserver
+
 账号:admin 密码:admin123
